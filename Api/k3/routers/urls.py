@@ -1,5 +1,5 @@
 from django.urls import include, path
-from Api.k3.controllers.views import ContactosDc,proxyGmini_view,CuadraturaSvia,getMonitoreo,GeneratorTokenExpiring,GeneratorTokenNonExpiring,ReportesSviaIrv,LastRealTime,nonAgentApi,ConsultaWaletsTiemReal,ConsultaRutViewAcsa,DeadCallInsertView,VerifyOrRefreshTokenView,deleteUsersWalletModule,InsertWallets,InsertModules,getPermissionsModule,getPermissionsWallet,InsertOrUpdatePermissionsWalletView,InsertOrUpdatePermissionsModuleView,GetModulesUserForRut,getAreas,getModules,getWallet,getRoles,RegisterUserView,getModulesUser,getLoginUser,getAllUsers,ListNASFilesRRHHView,PreviewNASFileView,ListSMBFilesRrrHhView,ListSMBFilesUniqueView,DownloadNASFileView,ListNASFilesView,ListFilesServerView,CleanFolderSFTPView,getUsersAsigned,InsertFileSFTPView,UploadSFTPFileView,CreateSFTPDirectoryView,insert_logs,RecordingAllWalletView,RecordingSviaView,download_file,proxy_view,get_audio_files,InformeGestionToday,generar_reporte_externo,generar_reporte_interno
+from Api.k3.controllers.views import ContactosDc,proxyGmini_view,gestionAllWallet,CuadraturaSvia,getMonitoreo,GeneratorTokenExpiring,GeneratorTokenNonExpiring,ReportesSviaIrv,LastRealTime,nonAgentApi,ConsultaWaletsTiemReal,ConsultaRutViewAcsa,DeadCallInsertView,VerifyOrRefreshTokenView,deleteUsersWalletModule,InsertWallets,InsertModules,getPermissionsModule,getPermissionsWallet,InsertOrUpdatePermissionsWalletView,InsertOrUpdatePermissionsModuleView,GetModulesUserForRut,getAreas,getModules,getWallet,getRoles,RegisterUserView,getModulesUser,getLoginUser,getAllUsers,ListNASFilesRRHHView,PreviewNASFileView,ListSMBFilesRrrHhView,ListSMBFilesUniqueView,DownloadNASFileView,ListNASFilesView,ListFilesServerView,CleanFolderSFTPView,getUsersAsigned,InsertFileSFTPView,UploadSFTPFileView,CreateSFTPDirectoryView,insert_logs,RecordingAllWalletView,RecordingSviaView,download_file,proxy_view,get_audio_files,InformeGestionToday,generar_reporte_externo,generar_reporte_interno
 from Api.k3.middlewares.validateJWT import ValidateTokenView
 
 urlpatterns = [
@@ -67,7 +67,7 @@ urlpatterns = [
     path('monitoreo-ejecucion/',getMonitoreo.as_view(), name='getMonitoreo'),
     
     #todos las gestiones de la cartera falta
-    # path('gestiones-wallet/<str:rut>/', gestionAllWallet.as_view(), name='gestiones-all-wallet'),
+    path('gestiones-wallet/<str:rut>/', gestionAllWallet.as_view(), name='gestiones-all-wallet'),
     
 
 

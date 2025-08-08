@@ -942,11 +942,11 @@ class ListSMBFilesRrrHhView(APIView):
 
 class InsertFileSFTPView(APIView):
     def post(self, request):
-        host = "192.168.5.11"
-        port = 22
-        username = "administrador"
-        password = "Kon3ctados2024-"
-        remote_path = "C:\\Users\\Administrador\\Documents\\Cargas\\CONDEZA\\"
+        host = "192.168.5.12"
+        port = 21
+        username = "UsrK3"
+        password = "KqoVd3AdwrYwWfP"
+        remote_path = "L:\\DOCUMENTOS\\Produccion\\Push\\CONDEZA\\"
         
         if 'file' not in request.FILES:
             return Response({'error': 'No se proporcionó el archivo.'}, status=status.HTTP_400_BAD_REQUEST)
@@ -1849,3 +1849,20 @@ class getMonitoreo(APIView):
             cursor.close()
         result_list = [dict(zip(columns, row)) for row in data]
         return Response(result_list)
+
+
+class gestionAllWallet(APIView):
+    def get(self, request, rut):
+        cursor = connections['main'].cursor()
+        try:
+            cursor.execute("""
+                  SELECT * FROM fn_asignacion_rut(%s);
+            """, [rut])
+            columns = [col[0] for col in cursor.description]
+            data = cursor.fetchall()
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        finally:
+            cursor.close()  # Cerrar el cursor correctamente
+        result_list = [dict(zip(columns, row)) for row in data]
+        return Response(result_list, status=status.HTTP_200_OK)
